@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Capital</title>
+</head>
+<body>
+
+{% include "header.html" %}
+
+<br><br>
+<div class="container">
+
+
+<div class="row">
+
+			<div class="col-md-6">
+
+						<form method="POST" class="form" action='/visita'>
+
+
+
+							{% csrf_token %}
+
+								
+								<label for='fecha'>Fecha</label>
+								<input required  type="date" class="form-control" id="fecha"  name='fecha' placeholder="Fecha">
+
+								
+								<label for='cliente'>Cliente</label>
+								<input required type="text" class="form-control" id=""  name='cliente' placeholder="Cliente">
+
+								
+								<label for='actividad'>Actividad</label>
+								<select required class="form-control" name='actividad' >
+									
+								{% for p in actividad %}
+									<option value="{{p.id}}">{{p.nombre}}</option>
+									{% endfor %}
+
+								</select>
+
+								<label for='producto'>Producto</label>
+								<select required class="form-control" name='producto' >
+									
+									{% for p in producto %}
+									<option value="{{p.id}}">{{p.nombre}}</option>
+									{% endfor %}
+
+
+								</select>
+
+								<label for='interes'>Interes</label>
+								<select required class="form-control" name='interes' >	
+
+									{% for p in interes %}
+									<option value="{{p.id}}">{{p.nombre}}</option>
+									{% endfor %}</select>
+
+								
+								
+
+
+			</div>
+
+			<div class="col-md-6">
+
+
+							<label for='interes'>Interes</label>
+							<input required type="text" class="form-control" id="interes" name='direccion'  placeholder="Direccion">
+							
+							<label for='telefono'>Telefono</label>
+							<input required type="number" class="form-control" id="telefono" name='telefono'  placeholder="Movil">
+							
+							<label for='fijo'>Fijo</label>
+							<input required type="number" class="form-control" id="fijo"  name='fijo' placeholder="Fijo">
+							
+
+							<label for='observacion'>Observacion</label>
+							<input required type="number" class="form-control" id="observacion"  name='observacion' placeholder="Observacion">
+			
+
+							<br>
+							
+							<button type="submit" class="btn btn-primary">Guardar</button>
+						</form>
+							
+
+			</div>
+
+
+</div>
+
+<br>
+<h5>Lista</h5>
+<br>
+
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Cliente</th>
+			<th>Actividad </th>
+			<th>Interes</th>
+			<th>Producto</th>
+			<th>Direccion</th>
+			<th>Telefono</th>
+			<th>Fijo</th>
+			<th>Observacion</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		{% for p in gestion %}
+		<tr>
+			<td>{{p.cliente}}</td>
+			<td>{{p.actividad.nombre }}</td>
+			<td>{{p.interes.nombre}}</td>
+			<td>{{p.producto.nombre}}</td>
+			<td>{{p.direccion}}</td>
+			<td>{{p.telefono}}</td>
+			<td>{{p.fijo}}</td>
+			<td>{{p.observacion}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+</div>
+
+	
+</body>
+</html>
+
